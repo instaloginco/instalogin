@@ -1,0 +1,76 @@
+version: '3'
+
+services:
+  # PHP Service
+  instalogin_app:
+    build:
+      context: ../instalogin
+      dockerfile: Dockerfile
+    image: instalogin/php
+    restart: always
+    container_name: instalogin_app
+    working_dir: /var/www
+    volumes:
+      - ../instalogin:/var/www
+      - ../instalogin/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - instalogin-network
+
+  # Nginx Service
+  instalogin_webserver:
+    image: nginx:alpine
+    restart: always
+    container_name: instalogin_webserver
+    ports:
+      - "127.0.0.1:7256:80"
+    volumes:
+      - ../instalogin:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - instalogin-network
+
+  # MySQL Service
+  instalogin_db:
+    image: mysql:5.7.22
+    container_name: instalogin_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    command: ['mysqld', '--character-set-server=utf8', '--collation-server=utf8_bin']
+    volumes:
+      - dbdata_instalogin:/var/lib/mysql/
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+    networks:
+      - instalogin-network
+
+  # Phpmyadmin
+  instalogin_phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    tty: true
+    restart: always
+    container_name: instalogin_phpmyadmin
+    links:
+      - instalogin_db
+    ports:
+      - "127.0.0.1:7155:80"
+    environment:
+      - PMA_ARBITRARY=1
+    networks:
+      - instalogin-network
+
+# Docker Networks
+networks:
+  instalogin-network:
+    driver: bridge
+
+# Volumes
+volumes:
+  dbdata_instalogin:
+

@@ -1,0 +1,53 @@
+@import "bulma.min.css";
+
+body::after {
+    background-image: url("data:image/png;base64,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");
+    content: "";
+    opacity: .2;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: -1
+}
+
+html {
+    background: rgb(30, 30, 30);
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.navbar-item.is-active {
+    background: #d7e3e8 !important;
+}
+
+.card-header {
+    box-shadow: 0 0.125em 0.25em rgb(10 10 10 / 5%);
+}
+
+.card {
+    border-bottom-left-radius: 45px;
+    border-bottom-right-radius: 45px;
+    border: 3px dashed #5c5c5c;
+}
+
+.navbar {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 3px dashed #5c5c5c;
+    border-bottom: none;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #9a9a9a !important;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #9a9a9a !important;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #9a9a9a !important;
+}
