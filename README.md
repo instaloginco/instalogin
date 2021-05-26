@@ -1,4 +1,7 @@
-To run, follow:
+### Code for Chrome Extension, Firefox extension, backend.
+
+
+To run BE:
 ```
 git clone git@github.com:instaloginco/instalogin.git
 cd instalogin
@@ -20,6 +23,7 @@ docker exec -it instalogin_app php artisan migrate:fresh
 
 Visit: http://127.0.0.1:7256
 
+---
 
 Todo: instructions how to set up postfix etc.
 
