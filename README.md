@@ -1,4 +1,4 @@
-### Code for Chrome Extension, Firefox extension, backend of https://instalogin.co.
+### Code for Chrome Extension, Firefox extension and Backend of https://InstaLogin.co.
 
 
 To run BE:
