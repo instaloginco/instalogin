@@ -1,4 +1,4 @@
-### Code for Chrome Extension, Firefox extension and Backend of https://InstaLogin.co.
+### Code for Chrome Extension, Firefox extension and Backend of https://InstaLogin.co
 
 
 To run BE:
@@ -21,10 +21,19 @@ Run migrations:
 docker exec -it instalogin_app php artisan migrate:fresh 
 ```
 
-Visit: http://127.0.0.1:7256
+To process emails:
+```
+docker exec -it instalogin_app php artisan make:command ProcessEmail base64_encoded_email
+```
+
+http://127.0.0.1:7256
 
 ---
 
-Todo: instructions how to set up postfix etc.
+Set up postfix for incoming email:
+
+https://docs.gitlab.com/ee/administration/reply_by_email_postfix_setup.html
+
+---
 
 Have any questions? Join discord: https://discord.com/invite/9uaap4YxkZ
